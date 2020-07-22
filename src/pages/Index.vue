@@ -1,58 +1,105 @@
 <template>
   <div>
-    <q-btn-dropdown color="primary" label="capacitor test">
+    <q-btn-dropdown
+      color='primary'
+      label='capacitor test'
+    >
       <q-list>
-        <q-item v-close-popup clickable @click="get_device()">
+        <q-item
+          v-close-popup
+          clickable
+          @click='get_device()'
+        >
           <q-item-section>
             <q-item-label>device</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-close-popup clickable @click="keyboard_show()">
+        <q-item
+          v-close-popup
+          clickable
+          @click='keyboard_show()'
+        >
           <q-item-section>
             <q-item-label>keyboard_show</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-close-popup clickable @click="local_notifications()">
+        <q-item
+          v-close-popup
+          clickable
+          @click='local_notifications()'
+        >
           <q-item-section>
             <q-item-label>local_notifications</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-close-popup clickable @click="modal_alert()">
+        <q-item
+          v-close-popup
+          clickable
+          @click='modal_alert()'
+        >
           <q-item-section>
             <q-item-label>modal_alert</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-close-popup clickable @click="get_network()">
+        <q-item
+          v-close-popup
+          clickable
+          @click='get_network()'
+        >
           <q-item-section>
             <q-item-label>get_network</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-close-popup clickable @click="share()">
+        <q-item
+          v-close-popup
+          clickable
+          @click='share()'
+        >
           <q-item-section>
             <q-item-label>share</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-close-popup clickable @click="get_permissions()">
+        <q-item
+          v-close-popup
+          clickable
+          @click='get_permissions()'
+        >
           <q-item-section>
             <q-item-label>get_permissions</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-close-popup clickable @click="status_bar()">
+        <q-item
+          v-close-popup
+          clickable
+          @click='status_bar()'
+        >
           <q-item-section>
             <q-item-label>status_bar</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-close-popup clickable @click="set_storage()">
+        <q-item
+          v-close-popup
+          clickable
+          @click='set_storage()'
+        >
           <q-item-section>
             <q-item-label>set_storage</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-close-popup clickable @click="get_storage()">
+        <q-item
+          v-close-popup
+          clickable
+          @click='get_storage()'
+        >
           <q-item-section>
             <q-item-label>get_storage</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-close-popup clickable @click="toast()">
+        <q-item
+          v-close-popup
+          clickable
+          @click='toast()'
+        >
           <q-item-section>
             <q-item-label>toast</q-item-label>
           </q-item-section>
@@ -63,6 +110,11 @@
     {{ network }}
     {{ permissions }}
     {{ user }}
+    <div
+      v-for='i in 10'
+      :key='i'
+      v-text="i < 9 ? 'f' : 'w'"
+    />
   </div>
 </template>
 
@@ -74,20 +126,36 @@ const { Device, Keyboard, LocalNotifications, Modals, Network, Share, Permission
 export default {
   data() {
     return {
-      device: null,
-      network: null,
+      device     : null,
+      network    : null,
       permissions: null,
-      is_light: true,
-      user: null
+      is_light   : true,
+      user       : null,
+      arr        : [
+        '1',
+        '2'
+      ]
     }
   },
-  async created() {
-  },
   methods: {
+    kkk(a, b, c) {
+      if (a) {
+        console.log(a)
+        return a
+      }
+      else if (b) {
+        console.log(b)
+        return c
+      }
+      return b
+    },
     toast() {
+      this.kkk('faksfakfljkfa', 'faksfakfljkfa', 'faksfakfljkfa', 'faksfakfljkfa', 'faksfakfljkfa', 'faksfakfljkfa', 'faksfakfljkfa', 'faksfakfljkfa')
+
       Toast.show({
         text: 'Hello!'
       })
+      console.log('fff')
     },
     get_device() {
       Device.getInfo().then(device => {
@@ -101,21 +169,21 @@ export default {
       await LocalNotifications.schedule({
         notifications: [
           {
-            title: 'Title',
-            body: 'Body',
-            id: 1,
-            schedule: { at: new Date(Date.now() + 1000 * 5) },
-            sound: null,
-            attachments: null,
+            title       : 'Title',
+            body        : 'Body',
+            id          : 1,
+            schedule    : { at: new Date(Date.now() + 1000 * 5) },
+            sound       : null,
+            attachments : null,
             actionTypeId: '',
-            extra: null
+            extra       : null
           }
         ]
       })
     },
     modal_alert() {
       Modals.alert({
-        title: 'Stop',
+        title  : 'Stop',
         message: 'this is an error'
       })
     },
@@ -126,15 +194,14 @@ export default {
     },
     get_permissions() {
       Permissions.query({ name: 'camera' }).then(permissions => {
-        console.log(permissions)
         this.permissions = permissions
       })
     },
     async share() {
       const shareRet = await Share.share({
-        title: 'See cool stuff',
-        text: 'Really awesome thing you need to see right meow',
-        url: 'http://ionicframework.com/',
+        title      : 'See cool stuff',
+        text       : 'Really awesome thing you need to see right meow',
+        url        : 'http://ionicframework.com/',
         dialogTitle: 'Share with buddies'
       })
       console.log(shareRet)
@@ -152,9 +219,9 @@ export default {
     },
     set_storage() {
       Storage.set({
-        key: 'user',
+        key  : 'user',
         value: JSON.stringify({
-          name: 'fuuuuck',
+          name    : 'fuuuuck',
           password: 'fffff'
         })
       })

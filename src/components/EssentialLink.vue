@@ -1,15 +1,15 @@
 <template>
   <q-item
     clickable
-    tag="a"
-    target="_blank"
-    :href="link"
+    tag='a'
+    target='_blank'
+    :href='link'
   >
     <q-item-section
-      v-if="icon"
+      v-if='icon'
       avatar
     >
-      <q-icon :name="icon" />
+      <q-icon :name='icon' />
     </q-item-section>
 
     <q-item-section>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'EssentialLink',
+  name: 'essential-link',
   props: {
     title: {
       type: String,
